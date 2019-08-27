@@ -1,5 +1,5 @@
 /// <reference path="index.d.ts" />
-import {DATE_REGEX, UNITS_CONVERTOR} from './core/const'
+import {DATE_REGEX, UNITS_CONVERTOR, UNIT_TO_FILED, SORTED_FILED_ARR} from './core/const'
 import Formator from './core/Formator';
 
 export default class HgDate{
@@ -11,7 +11,7 @@ export default class HgDate{
         }else if(typeof time === 'string'){
             let results: string[] = DATE_REGEX.exec(time)
             if(!results){
-                throw  `pattern error: ${time}`
+                throw `pattern error: ${time}`
             }
             results.shift()
             this.fmtor = new Formator({res: results})
@@ -20,7 +20,7 @@ export default class HgDate{
             this.date = new Date()
         }
         if(this.date && this.date.toString() === 'Invalid Date'){
-            throw  `Invalid Date: ${time}`
+            throw `Invalid Date: ${time}`
         }
         if(!this.fmtor){
             this.fmtor = new Formator({date: this.date})
@@ -45,7 +45,14 @@ export default class HgDate{
         this.fmtor = new Formator({date: this.date})
         return this
     }
-
+    private handleFiled(unit: Unit, handleType: 'start' | 'end'): void{
+        let f = UNIT_TO_FILED[unit]
+        if(f){
+            let initArr = SORTED_FILED_ARR.slice(SORTED_FILED_ARR.indexOf(f) + 1)
+            this.fmtor.handleFiled(handleType, initArr)
+            this.date = this.fmtor.toDate()
+        }
+    }
     public toString(): string{
         return this.date.toString()
     }
@@ -58,10 +65,18 @@ export default class HgDate{
     public format(fStr: string): string{
         return this.fmtor.format(fStr)
     }
-    public add(amt: number, unit: Unit): HgDate {
+    public add(amt: number, unit: Unit): HgDate{
         return this.calUnit(amt, unit)
     }
-    public substract(amt: number, unit: Unit): HgDate {
+    public substract(amt: number, unit: Unit): HgDate{
         return this.calUnit(amt * -1, unit)
+    }
+    public startOf(unit: Unit): HgDate{
+        this.handleFiled(unit, 'start')
+        return this
+    }
+    public endOf(unit: Unit): HgDate{
+        this.handleFiled(unit, 'end')
+        return this
     }
 }

@@ -3,8 +3,7 @@ export const DATE_REGEX = /^(\d{4})\D?(\d{2}|)\D?(\d{2}|)\D?(\d{2}|)\D?(\d{2}|)\
 export const FORMAT_DATE_REGEX = /YYYY|MM|DD|hh|mm|ss|S/g
 
 export const MAX_DATE_INFO: {
-    'DD': {[key: string]: number}
-    [key: string]: (number | {[key: string]: number})
+    [k in Filed]: number | {[key: string]: number}
 } = {
     'YYYY': 9999,
     'MM': 12,
@@ -47,3 +46,24 @@ export const UNITS_CONVERTOR: {
     'y': -1,
     'year': -1,
 }
+
+export const UNIT_TO_FILED: {
+    [k in Unit]: Filed
+} = {
+    'ms': 'S',
+    'millisecond': 'S',
+    's': 'ss',
+    'second': 'ss',
+    'm': 'mm',
+    'minute': 'mm',
+    'h': 'hh',
+    'hour': 'hh',
+    'd': 'DD',
+    'day': 'DD',
+    'M': 'MM',
+    'month': 'MM',
+    'y': 'YYYY',
+    'year': 'YYYY',
+}
+
+export const SORTED_FILED_ARR: Filed[] = ['YYYY', 'MM', 'DD', 'hh', 'mm', 'ss', 'S'] 

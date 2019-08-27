@@ -33,17 +33,18 @@ export default class Formator {
             this.initInfoByDate(date)
         }
     }
-
+    private getCurMonMaxDay(): number{
+        if(this.MM === '02' && this.isLeapYear){
+            return (MAX_DATE_INFO.DD as {[key: string]: number})[this.MM + '_leap']
+        }else {
+            return (MAX_DATE_INFO.DD as {[key: string]: number})[this.MM]
+        }
+    }
     checkValidation(): void{
-        for(let key in MAX_DATE_INFO){
+        let key: Filed
+        for(key in MAX_DATE_INFO){
             if(typeof MAX_DATE_INFO[key] === 'object'){
-                let max_day: number
-                MAX_DATE_INFO
-                if(this.MM === '02' && this.isLeapYear){
-                    max_day = (<{[key: string]: number}>MAX_DATE_INFO[key])[this.MM + '_leap']
-                }else {
-                    max_day = (<{[key: string]: number}>MAX_DATE_INFO[key])[this.MM]
-                }
+                let max_day: number = this.getCurMonMaxDay()
                 if(+this[key] > max_day){
                     throw `out of range ${key}: ${this[key]}`
                 }
@@ -54,7 +55,6 @@ export default class Formator {
             }
         }
     }
-
     initInfoByDate(date: Date): void{
         this.YYYY = padStart(date.getFullYear().toString(), 4, '0')
         this.MM = padStart((date.getMonth() + 1).toString(), 2, '0')
@@ -65,24 +65,44 @@ export default class Formator {
         this.S = padStart(date.getMilliseconds().toString(), 3, '0')
         this.isLeapYear = isLeapYear(this.YYYY)
     }
-
     toDate(): Date{
         return new Date(+this.YYYY, +this.MM - 1, +this.DD, +this.hh, +this.mm, +this.ss, +this.S)
     }
-
     format(fStr: string): string{
         return fStr.replace(FORMAT_DATE_REGEX, (filed) => this[filed])
     }
-
-    getCurrentMouthMaxDays(): number{
-        let dayKey: string = this.MM
-        if(dayKey === '02' && this.isLeapYear){
-            dayKey = '02_leap'
+    handleFiled(handleType: 'start' | 'end', fileds: Filed[]): Formator{
+        if(handleType === 'start'){
+            fileds.forEach(filed => this.startFiled(filed))
+        }else {
+            fileds.forEach(filed => this.endFiled(filed))
         }
-        return MAX_DATE_INFO.DD[dayKey]
+        this.isLeapYear = isLeapYear(this.YYYY)
+        return this
     }
-
-    getCurrentYearsMaxDays(): number{
-        return this.isLeapYear ? 366 : 365
+    startFiled(filed: Filed):void{
+        switch(filed){
+            case 'YYYY':
+                this.YYYY = '0001'
+                break;
+            case 'MM':
+            case 'DD':
+                this[filed] = '01'
+                break;
+            case 'S':
+                this.S = '000'
+                break;
+            default:
+                this[filed] = '00'
+        }
+    }
+    endFiled(filed: Filed):void{
+        switch(filed){
+            case 'DD':
+                this.DD = this.getCurMonMaxDay() + ''
+                break;
+            default:
+                this[filed] = MAX_DATE_INFO[filed] + ''
+        }
     }
 }

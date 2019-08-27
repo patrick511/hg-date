@@ -13,7 +13,9 @@ describe('HgDate:init', () => {
         expect(
             new HgDate('1992-05-11 23:11:02:004').format('YYYY年MM月DD日 hh:mm:ss'),
         ).toEqual('1992年05月11日 23:11:02')
-        
+    })
+
+    test('HgDate:add&substract', () => {
         expect(
             new HgDate('1992-05-11 23:11:02:004').add(1, 'y').format('YYYYMMDD'),
         ).toEqual('19930511')
@@ -49,5 +51,51 @@ describe('HgDate:init', () => {
         expect(
             new HgDate('1992-05-11 23:11:02:004').add(120, 'm').format('YYYY-MM-DD hh:mm:ss:S'),
         ).toEqual('1992-05-12 01:11:02:004')
+    })
+
+    test('HgDate:startOf&endOf', () => {
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').startOf('d').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-05-11 00:00:00:000')
+        
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').startOf('M').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-05-01 00:00:00:000')
+
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').startOf('y').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-01-01 00:00:00:000')
+
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').startOf('m').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-05-11 23:11:00:000')
+
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').startOf('ms').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-05-11 23:11:02:004')
+
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').endOf('d').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-05-11 23:59:59:999')
+        
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').endOf('M').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-05-31 23:59:59:999')
+
+        expect(
+            new HgDate('1992-02-11 23:11:02:004').endOf('M').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-02-29 23:59:59:999')
+
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').endOf('y').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-12-31 23:59:59:999')
+
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').endOf('m').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-05-11 23:11:59:999')
+
+        expect(
+            new HgDate('1992-05-11 23:11:02:004').endOf('ms').format('YYYY-MM-DD hh:mm:ss:S'),
+        ).toEqual('1992-05-11 23:11:02:004')
     })
 })
