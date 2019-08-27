@@ -1,0 +1,42 @@
+{
+  "name": "hg-date",
+  "version": "0.0.7",
+  "description": "a date lib",
+  "main": "dist/hg-date.js",
+  "module": "src/index.ts",
+  "scripts": {
+    "build": "webpack",
+    "publish": "npm publish",
+    "test": "jest --verbose",
+    "login": "npm login --registry=https://registry.npmjs.org "
+  },
+  "author": "patrickq511",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^24.0.17",
+    "@types/node": "^12.7.1",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.4",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6"
+  },
+  "jest": {
+    "rootDir": "tests",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "dependencies": {}
+}
