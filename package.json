@@ -1,7 +1,8 @@
 {
   "name": "hg-date",
-  "version": "0.0.7",
-  "description": "a date lib",
+  "version": "1.0.0",
+  "description": "a minimal Dates lib, esay to manipulate Dates",
+  "keywords": ["date", "dayjs", "moment"],
   "main": "dist/hg-date.js",
   "module": "src/index.ts",
   "scripts": {

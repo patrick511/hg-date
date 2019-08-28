@@ -1,7 +1,7 @@
 import HgDate from '../src/index'
 
-describe('HgDate:init', () => {
-    test('HgDate', () => {
+describe('HgDate', () => {
+    test('HgDate:init&format', () => {
         expect(
             new HgDate('1992-05-11 23:11:02:004').format('YYYY-MM-DD'),
         ).toEqual('1992-05-11')
@@ -97,5 +97,19 @@ describe('HgDate:init', () => {
         expect(
             new HgDate('1992-05-11 23:11:02:004').endOf('ms').format('YYYY-MM-DD hh:mm:ss:S'),
         ).toEqual('1992-05-11 23:11:02:004')
+    })
+
+    test('HgDate:diff', () => {
+        expect(
+            new HgDate('1992-06-11 23:11:02:004').diff('1992-04-11 23:11:02:004').get('M'),
+        ).toEqual(2)
+
+        expect(
+            new HgDate('1992-06-11 23:16:02:004').diff('1992-04-11 23:11:02:004').get('m'),
+        ).toEqual(5)
+
+        expect(
+            new HgDate('1992-04-11 23:11:02:004').diff(new HgDate('1992-06-11 23:16:02:004')).get('m'),
+        ).toEqual(-5)
     })
 })

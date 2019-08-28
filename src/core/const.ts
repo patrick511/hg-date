@@ -41,10 +41,22 @@ export const UNITS_CONVERTOR: {
     'hour': 3600000,
     'd': 86400000,
     'day': 86400000,
-    'M': -1,
-    'month': -1,
-    'y': -1,
-    'year': -1,
+    'M': 2592000000, //30days
+    'month': 2592000000,
+    'y': 31536000000, //365days
+    'year': 31536000000,
+}
+
+export const FILED_CONVERTOR: {
+    [k in Filed]: number
+} = {
+    'S': 1,
+    'ss': 1000,
+    'mm': 60000,
+    'hh': 3600000,
+    'DD': 86400000,
+    'MM': 2592000000, //30days
+    'YYYY': 31536000000 //365days
 }
 
 export const UNIT_TO_FILED: {

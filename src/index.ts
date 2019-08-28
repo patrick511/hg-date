@@ -1,10 +1,12 @@
 /// <reference path="index.d.ts" />
 import {DATE_REGEX, UNITS_CONVERTOR, UNIT_TO_FILED, SORTED_FILED_ARR} from './core/const'
-import Formator from './core/Formator';
+import Formator from './core/Formator'
+import Duration from './core/Duration'
 
 export default class HgDate{
     private date: Date
     private fmtor: Formator
+    public static Duration = Duration
     constructor(time?: string | number | Date){
         if(time instanceof Date || typeof time === 'number'){
             this.date = new Date(time)
@@ -78,5 +80,12 @@ export default class HgDate{
     public endOf(unit: Unit): HgDate{
         this.handleFiled(unit, 'end')
         return this
+    }
+    public diff(date: HgDate | Date | string | number): Duration{
+        if(!(date instanceof HgDate)){
+            date = new HgDate(date)
+        }
+        let _period = new Duration(this.date.getTime() - date.getTime())
+        return _period
     }
 }
