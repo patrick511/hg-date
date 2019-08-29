@@ -1,6 +1,6 @@
 {
   "name": "hg-date",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a minimal Dates lib, esay to manipulate Dates",
   "keywords": ["date", "dayjs", "moment"],
   "main": "dist/hg-date.js",
@@ -13,6 +13,7 @@
   },
   "author": "patrickq511",
   "license": "ISC",
+  "repository": "https://github.com/patrick511/hg-date",
   "devDependencies": {
     "@types/jest": "^24.0.17",
     "@types/node": "^12.7.1",

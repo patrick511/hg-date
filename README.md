@@ -71,7 +71,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 > ``` 
 > #
 
-> ### function **format**   
+> ### **format**   
 > - - -
 > ### *param*:
 > - tokenStr: string - the date string that you want to format.the detail see Format Token Table.
@@ -99,7 +99,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 | ss | 59 | seconds |
 | S | 199 | milliseconds |
 
-> ### function **add**   
+> ### **add**   
 > - - -
 > ### *param*:
 > - amt: number - the amount you want to add.
@@ -128,7 +128,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 | M | month |
 | y | year |
 
-> ### function **substract**   
+> ### **substract**   
 > - - -
 > ### *param*:
 > - amt: number - the amount you want to substract.
@@ -145,7 +145,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 > ``` 
 > #
 
-> ### function **startOf**   
+> ### **startOf**   
 > - - -
 > ### *param*:
 > - unit: Unit - this value of Unit Table(Unit or Unit Abbr).
@@ -161,7 +161,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 > ``` 
 > #
 
-> ### function **endOf**   
+> ### **endOf**   
 > - - -
 > ### *param*:
 > - unit: Unit - this value of Unit Table(Unit or Unit Abbr).
@@ -177,7 +177,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 > ``` 
 > #
 
-> ### function **getTime**   
+> ### **getTime**   
 > - - -
 > ### *param*:
 > ### *return*: the millisecond of the date(same as date)
@@ -190,7 +190,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 > ``` 
 > #
 
-> ### function **diff**   
+> ### **diff**   
 > - - -
 > ### *param*:
 > - date: HgDate | Date | string | number
@@ -208,7 +208,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 > ``` 
 > #
 
-### **HgDate**: class
+### **Duration**: class
 - getTime
 - getAs
 - get
@@ -224,7 +224,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 > ``` 
 > #
 
-> ### function **getTime**   
+> ### **getTime**   
 > - - -
 > ### *param*:
 > ### *return*: the millisecond of the date(same as date)
@@ -237,7 +237,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 > ```
 > #
 
-> ### function **get** 
+> ### **get** 
 > - - -
 > ### *param*:
 > - unit: Unit - this value of Unit Table(Unit or Unit Abbr).
@@ -255,7 +255,7 @@ new HgDate('2019-08-28').diff('2019-08-25').getAs('day')
 > ```
 > #
 
-> ### function **getAs** 
+> ### **getAs** 
 > - - -
 > ### *param*:
 > - unit: Unit - this value of Unit Table(Unit or Unit Abbr).
